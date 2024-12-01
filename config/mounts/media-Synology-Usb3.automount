@@ -1,0 +1,7 @@
+[Unit]
+Description=Automount Synology NAS through SMB protocol - USB3 Shared Folder
+Where=/media/Synology/Usb3
+TimeoutIdleSec=10
+
+[Install]
+WantedBy=multi-user.target

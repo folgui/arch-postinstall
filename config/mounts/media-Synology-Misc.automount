@@ -1,0 +1,9 @@
+[Unit]
+Description=Automount Synology NAS through SMB protocol - Misc shared folder
+
+[Automount]
+Where=/media/Synology/Misc
+TimeoutIdleSec=10
+
+[Install]
+WantedBy=multi-user.target

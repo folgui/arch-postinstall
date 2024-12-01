@@ -1,0 +1,9 @@
+[Unit]
+Description=Automount Synology NAS through SMB protocol - Descargas shared folder
+
+[Automount]
+Where=/media/Synology/Descargas
+TimeoutIdleSec=10
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,9 @@
+[Unit]
+Description=Automount Synology NAS through SMB protocol - Music shared folder
+
+[Automount]
+Where=/media/Synology/Musica
+TimeoutIdleSec=10
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,8 @@
+[Unit]
+Description=Create symlinks at /run/media for /media/DATA and /media/WDMYBOOK8
+
+[Service]
+ExecStart=/bin/bash /usr/local/bin/create-symlinks.sh
+
+[Install]
+WantedBy=multi-user.target

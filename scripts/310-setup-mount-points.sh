@@ -55,7 +55,7 @@ msg_info "Preparing mountpoints and enabling its systemd units"
 local mountpoint="/media"
 sudo mkdir -p "$mountpoint"
 
-sudo cp $script_dir/settings/mounts/media* /etc/systemd/system
+sudo cp $script_dir/config/mounts/media* /etc/systemd/system
 
 sudo systemctl enable media-DATA.mount
 sudo systemctl enable media-WDMYBOOK8.mount
@@ -73,8 +73,8 @@ sudo systemctl enable media-Synology-Usb.automount
 sudo systemctl enable media-Synology-Videos.automount
 sudo systemctl enable media-Synology-Web.automount
 
-sudo cp $script_dir/settings/mounts/create-symlinks.service /etc/systemd/system
-sudo cp $script_dir/settings/mounts/create-symlinks.sh /usr/local/bin
+sudo cp $script_dir/config/mounts/create-symlinks.service /etc/systemd/system
+sudo cp $script_dir/config/mounts/create-symlinks.sh /usr/local/bin
 sudo systemctl enable create-symlinks.service
 
 print_done

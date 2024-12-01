@@ -1,0 +1,9 @@
+[Unit]
+Description=Automount Synology NAS through SMB protocol - Backup shared folder
+
+[Automount]
+Where=/media/Synology/Backup
+TimeoutIdleSec=10
+
+[Install]
+WantedBy=multi-user.target

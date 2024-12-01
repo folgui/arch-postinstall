@@ -1,0 +1,12 @@
+[Unit]
+Description=Mount Synology NAS through SMB protocol - USB shared folder
+
+[Mount]
+What=//192.168.1.4/usbshare1
+Where=/media/Synology/Usb
+Type=cifs
+Options=_netdev,auto,vers=3,credentials=/home/folgui/.smbcredentials,uid=folgui,gid=folgui,mfsymlinks,iocharset=utf8,user,rw,file_mode=0777,dir_mode=0777
+TimeoutSec=30
+
+[Install]
+WantedBy=multi-user.target

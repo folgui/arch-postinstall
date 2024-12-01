@@ -1,0 +1,8 @@
+[Unit]
+Description=Automount Synology NAS through SMB protocol - Video shared folder
+
+[Automount]
+Where=/media/Synology/Videos
+
+[Install]
+WantedBy=multi-user.target

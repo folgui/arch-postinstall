@@ -1,0 +1,12 @@
+[Unit]
+Description=Mount WDMYBOOK8 external drive at /media/WDMYBOOK8
+
+[Mount]
+What=/dev/disk/by-uuid/f9808174-12ee-4357-9281-4331caa23e96
+Where=/media/WDMYBOOK8
+Type=ext4
+Options=defaults,rw,noatime
+#TimeoutSec=seconds
+
+[Install]
+WantedBy=multi-user.target
