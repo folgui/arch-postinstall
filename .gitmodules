@@ -1,0 +1,3 @@
+[submodule "BashHelper"]
+	path = BashHelper
+	url = https://github.com/folgui/BashHelper.git
