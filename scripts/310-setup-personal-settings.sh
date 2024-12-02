@@ -4,7 +4,7 @@
 #DEBUG
 #set -x ## Use “set -x” to enable debug mode
 #set -e ## Use "set -e" to exit on error
-set -u  ## Use "set -u" alway to make sure you won't use any undeclared variable. This saves you from a lot of headaches and critical bugs.
+set -u ## Use "set -u" alway to make sure you won't use any undeclared variable. This saves you from a lot of headaches and critical bugs.
 
 # ============================================================================ #
 # @author       : Copyright (c) 202x Jose Miguel Folgueira <a.k.a. folgui>
@@ -20,15 +20,14 @@ set -u  ## Use "set -u" alway to make sure you won't use any undeclared variable
 # ============================================================================ #
 
 PKG_WAYLAND=(
-'wayland'
-'xorg-xwayland'
-'xorg-xlsclients'
-'qt5-wayland'
-'glfw-wayland'
+  'wayland'
+  'xorg-xwayland'
+  'xorg-xlsclients'
+  'qt5-wayland'
+  'glfw-wayland'
 )
 
-
-script_dir=$(dirname $(readlink -f $(basename `pwd`)))
+script_dir=$(dirname $(readlink -f $(basename $(pwd))))
 
 source ./BashHelper/config.sh
 source ./BashHelper/common.sh
@@ -75,7 +74,6 @@ cp -R * /home/$user
 cd ..
 rm -fr dotfiles
 
-
 if [ -f /usr/share/wayland-sessions/plasma.desktop ]; then
   msg_info "Removing KDE PLASMA not required packages"
   sudo pacman -Rns --noconfirm ${PKG_PLASMA_REMOVE[@]}
@@ -87,97 +85,96 @@ if [ -f /usr/share/wayland-sessions/plasma.desktop ]; then
   sudo pacman --noconfirm --needed -S ${PKG_PLASMA[@]}
 
   msg_info "Appying plasma settings and personal configuration"
-#   sudo wget https://raw.githubusercontent.com/erikdubois/arcolinux-nemesis/master/Personal/settings/variety/variety.conf -O ~/.config/variety/variety.conf
-#
-#   sudo pacman -S --noconfirm --needed arcolinux-plasma-keybindings-git
-#
-#   cp /etc/skel/.config/kglobalshortcutsrc ~/.config/
-#   cp /etc/skel/.config/kglobalshortcutsrc-or ~/.config/
-#
-#   sudo pacman -S --noconfirm --needed arcolinux-plasma-servicemenus-git
-#
-#   if [ ! -d ~/.local/share/kio/servicemenus/ ]; then
-#     mkdir -p ~/.local/share/kio/servicemenus/
-#   fi
-#
-#   cp -v /etc/skel/.local/share/kio/servicemenus/* ~/.local/share/kio/servicemenus/
-#
-#   echo "Overwriting plasma settings here!"
-#   cp -rv $HOME/DATA/arcolinux-nemesis/Personal/settings/plasma6/.* ~
-#
-#   if ! grep -q "wobblywindowsEnabled=true" $HOME/.config/kwinrc; then
-#   echo '
-#
-# [Plugins]
-# wobblywindowsEnabled=true' | sudo tee -a ~/.config/kwinrc
-#   fi
+  #   sudo wget https://raw.githubusercontent.com/erikdubois/arcolinux-nemesis/master/Personal/settings/variety/variety.conf -O ~/.config/variety/variety.conf
+  #
+  #   sudo pacman -S --noconfirm --needed arcolinux-plasma-keybindings-git
+  #
+  #   cp /etc/skel/.config/kglobalshortcutsrc ~/.config/
+  #   cp /etc/skel/.config/kglobalshortcutsrc-or ~/.config/
+  #
+  #   sudo pacman -S --noconfirm --needed arcolinux-plasma-servicemenus-git
+  #
+  #   if [ ! -d ~/.local/share/kio/servicemenus/ ]; then
+  #     mkdir -p ~/.local/share/kio/servicemenus/
+  #   fi
+  #
+  #   cp -v /etc/skel/.local/share/kio/servicemenus/* ~/.local/share/kio/servicemenus/
+  #
+  #   echo "Overwriting plasma settings here!"
+  #   cp -rv $HOME/DATA/arcolinux-nemesis/Personal/settings/plasma6/.* ~
+  #
+  #   if ! grep -q "wobblywindowsEnabled=true" $HOME/.config/kwinrc; then
+  #   echo '
+  #
+  # [Plugins]
+  # wobblywindowsEnabled=true' | sudo tee -a ~/.config/kwinrc
+  #   fi
 
-# echo
-# echo "Sublime text settings"
-# echo
-# [ -d $HOME"/.config/sublime-text/Packages/User" ] || mkdir -p $HOME"/.config/sublime-text/Packages/User"
-# cp  $installed_dir/settings/sublimetext/Preferences.sublime-settings $HOME/.config/sublime-text/Packages/User/Preferences.sublime-settings
-# echo
+  # echo
+  # echo "Sublime text settings"
+  # echo
+  # [ -d $HOME"/.config/sublime-text/Packages/User" ] || mkdir -p $HOME"/.config/sublime-text/Packages/User"
+  # cp  $installed_dir/settings/sublimetext/Preferences.sublime-settings $HOME/.config/sublime-text/Packages/User/Preferences.sublime-settings
+  # echo
 
+  # echo
+  # echo "VirtualBox check - copy/paste template or not"
+  # echo
+  #
+  # result=$(systemd-detect-virt)
+  # if [ $result = "none" ];then
+  #
+  # 	echo
+  # 	tput setaf 2
+  # 	echo "################################################################"
+  # 	echo "####### Copy paste virtual box template"
+  # 	echo "################################################################"
+  # 	tput sgr0
+  # 	echo
+  #
+  # 	[ -d $HOME"/VirtualBox VMs" ] || mkdir -p $HOME"/VirtualBox VMs"
+  # 	sudo cp -rf settings/virtualbox-template/* ~/VirtualBox\ VMs/
+  # 	cd ~/VirtualBox\ VMs/
+  # 	tar -xzf template.tar.gz
+  # 	rm -f template.tar.gz
+  #
+  # else
+  #
+  # 	echo
+  # 	tput setaf 3
+  # 	echo "################################################################"
+  # 	echo "### You are on a virtual machine - skipping VirtualBox"
+  # 	echo "### Template not copied over"
+  # 	echo "### We will set your screen resolution with xrandr"
+  # 	echo "################################################################"
+  # 	tput sgr0
+  # 	echo
+  #
+  # 	xrandr --output Virtual-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal
+  #
+  # fi
 
-# echo
-# echo "VirtualBox check - copy/paste template or not"
-# echo
-#
-# result=$(systemd-detect-virt)
-# if [ $result = "none" ];then
-#
-# 	echo
-# 	tput setaf 2
-# 	echo "################################################################"
-# 	echo "####### Copy paste virtual box template"
-# 	echo "################################################################"
-# 	tput sgr0
-# 	echo
-#
-# 	[ -d $HOME"/VirtualBox VMs" ] || mkdir -p $HOME"/VirtualBox VMs"
-# 	sudo cp -rf settings/virtualbox-template/* ~/VirtualBox\ VMs/
-# 	cd ~/VirtualBox\ VMs/
-# 	tar -xzf template.tar.gz
-# 	rm -f template.tar.gz
-#
-# else
-#
-# 	echo
-# 	tput setaf 3
-# 	echo "################################################################"
-# 	echo "### You are on a virtual machine - skipping VirtualBox"
-# 	echo "### Template not copied over"
-# 	echo "### We will set your screen resolution with xrandr"
-# 	echo "################################################################"
-# 	tput sgr0
-# 	echo
-#
-# 	xrandr --output Virtual-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal
-#
-# fi
-
-# 	echo "Installing all shell files"
-# 	echo
-# 	cp $installed_dir/settings/shell-personal/.bashrc-personal ~/.bashrc-personal
-# 	cp $installed_dir/settings/shell-personal/.zshrc ~/.zshrc
-# 	sudo cp -f $installed_dir/settings/shell-personal/.zshrc /etc/skel/.zshrc
-# 	cp $installed_dir/settings/shell-personal/.zshrc-personal ~/.zshrc-personal
-# 	cp $installed_dir/settings/fish/alias.fish ~/.config/fish/alias.fish
-# 	echo
-#
-# 	echo "To personal Kvantum setup"
-# 	echo
-# 	[ -d $HOME"/.config/Kvantum" ] || mkdir -p $HOME"/.config/Kvantum"
-# 	cp -r $installed_dir/settings/Kvantum/* $HOME/.config/Kvantum
-# 	[ -d /etc/skel/.config/Kvantum ] || sudo mkdir -p /etc/skel/.config/Kvantum
-# 	sudo cp -r $installed_dir/settings/Kvantum/* /etc/skel/.config/Kvantum
-# 	echo
-#
-# 	echo
-# 	echo "Changing icons for telegram"
-# 	sh settings/telegram/adapt-telegram.sh
-# 	echo
+  # 	echo "Installing all shell files"
+  # 	echo
+  # 	cp $installed_dir/settings/shell-personal/.bashrc-personal ~/.bashrc-personal
+  # 	cp $installed_dir/settings/shell-personal/.zshrc ~/.zshrc
+  # 	sudo cp -f $installed_dir/settings/shell-personal/.zshrc /etc/skel/.zshrc
+  # 	cp $installed_dir/settings/shell-personal/.zshrc-personal ~/.zshrc-personal
+  # 	cp $installed_dir/settings/fish/alias.fish ~/.config/fish/alias.fish
+  # 	echo
+  #
+  # 	echo "To personal Kvantum setup"
+  # 	echo
+  # 	[ -d $HOME"/.config/Kvantum" ] || mkdir -p $HOME"/.config/Kvantum"
+  # 	cp -r $installed_dir/settings/Kvantum/* $HOME/.config/Kvantum
+  # 	[ -d /etc/skel/.config/Kvantum ] || sudo mkdir -p /etc/skel/.config/Kvantum
+  # 	sudo cp -r $installed_dir/settings/Kvantum/* /etc/skel/.config/Kvantum
+  # 	echo
+  #
+  # 	echo
+  # 	echo "Changing icons for telegram"
+  # 	sh settings/telegram/adapt-telegram.sh
+  # 	echo
 
   print_done
 else
@@ -185,5 +182,3 @@ else
 fi
 
 exit 0
-
-

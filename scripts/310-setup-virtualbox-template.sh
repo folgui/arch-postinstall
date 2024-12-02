@@ -4,7 +4,7 @@
 #DEBUG
 #set -x ## Use “set -x” to enable debug mode
 #set -e ## Use "set -e" to exit on error
-set -u  ## Use "set -u" alway to make sure you won't use any undeclared variable. This saves you from a lot of headaches and critical bugs.
+set -u ## Use "set -u" alway to make sure you won't use any undeclared variable. This saves you from a lot of headaches and critical bugs.
 
 # ============================================================================ #
 # @author       : Copyright (c) 202x Jose Miguel Folgueira <a.k.a. folgui>
@@ -21,17 +21,20 @@ set -u  ## Use "set -u" alway to make sure you won't use any undeclared variable
 
 # WORK_DIR=$(cd "$(dirname "$0")" && pwd)
 # WORK_DIR comes from BASHHELPER > common.sh
-source ./BashHelper/config.sh
-source ./BashHelper/common.sh
+
+script_dir=$(dirname $(readlink -f $(basename $(pwd))))
+
+source ../BashHelper/config.sh
+source ../BashHelper/common.sh
 
 #VBOXDIR=$HOME"/VirtualBox VMs"
-VBOXDIR="/run/media/DATA/VirtualMachines/vbox"
+VBOXDIR="/media/DATA/VirtualMachines/vbox"
 
 print_title "COPY VIRTUALBOX TEMPLATE"
 
 if [[ -d $VBOXDIR ]]; then
 	msg_info "Copying and extracting template"
-	cp -rf "$WORK_DIR/settings/virtualbox-template/template.tar.gz" "$VBOXDIR"
+	cp -rf "$script_dir/config/virtualbox-template/template.tar.gz" "$VBOXDIR"
 	cd "$VBOXDIR"
 	tar -xzf template.tar.gz
 	rm -f template.tar.gz

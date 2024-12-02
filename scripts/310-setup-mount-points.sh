@@ -21,8 +21,8 @@ set -u ## Use "set -u" alway to make sure you won't use any undeclared variable.
 
 script_dir=$(dirname $(readlink -f $(basename $(pwd))))
 
-source ./BashHelper/config.sh
-source ./BashHelper/common.sh
+source ../BashHelper/config.sh
+source ../BashHelper/common.sh
 
 print_title "SETTTING UP MOUNT POINTS"
 
